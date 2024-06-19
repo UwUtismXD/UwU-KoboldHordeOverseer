@@ -2,7 +2,7 @@
   
 KoboldAI Horde Overseer is a Web UI to view all current workers and models, pertaining to the KoboldAI Horde Cluster. Inspired by the original version, the brand new version is redesigned with a bit more features that is not originally included.
 
-[Live Version](https://overseer.logicism.tv)
+[Live Version](https://logicismdev.github.io/KoboldHordeOverseer/) [Backup Version](https://overseer.logicism.tv/)
   
 ## Features  
 - Grab User Details
