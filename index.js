@@ -410,7 +410,7 @@ async function grabLeaderboard() {
 }
 
 async function grabPerformance() {
-    let response = await fetch("https://horde.koboldai.net/api/v2/status/performance")
+    let response = await fetch("https://stablehorde.net/api/v2/status/performance")
     if (!response.ok) return;
 
     let performance = await response.json();
