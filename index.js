@@ -78,7 +78,7 @@ function openManageWorkers() {
     let manageWorkersList = document.getElementById("manageWorkersList");
 
     if (userinfo !== undefined && userinfo.worker_count !== 0) {
-        Promise.all(userinfo.worker_ids.map(id => fetch("https://stablehorde.net/api/v2/workers/" + id, {
+        Promise.all(userinfo.worker_ids.map(id => fetch("https://aihorde.net/api/v2/workers/" + id, {
             headers: {
                 "apikey": localStorage.getItem("api_key")
             }
@@ -122,7 +122,7 @@ function confirmDelete(name, id) {
 async function deleteWorker(id) {
     closePopup();
 
-    let response = await fetch("https://stablehorde.net/api/v2/workers/" + id, {
+    let response = await fetch("https://aihorde.net/api/v2/workers/" + id, {
         method: "DELETE",
         headers: {
             "apikey": localStorage.getItem("api_key")
@@ -215,7 +215,7 @@ function closeManageWorkers(persistcache = false) {
         }
 
         if (payloads.length !== 0) {
-            Promise.all(payloads.map(payload => fetch("https://stablehorde.net/api/v2/workers/" + payload.id, {
+            Promise.all(payloads.map(payload => fetch("https://aihorde.net/api/v2/workers/" + payload.id, {
                 method: "PUT",
                 headers: {
                     "apikey": localStorage.getItem("api_key"),
@@ -293,7 +293,7 @@ function sortWorkersList() {
 
 async function grabWorkersList(cached = false) {
     if (!cached) {
-        let response = await fetch("https://stablehorde.net/api/v2/workers?type=text")
+        let response = await fetch("https://aihorde.net/api/v2/workers?type=text")
         if (!response.ok) return;
 
         workers = await response.json();
@@ -357,7 +357,7 @@ async function grabWorkersList(cached = false) {
 }
 
 async function grabModelsList() {
-    let response = await fetch("https://stablehorde.net/api/v2/status/models?type=text&model_state=all")
+    let response = await fetch("https://aihorde.net/api/v2/status/models?type=text&model_state=all")
     if (!response.ok) return;
 
     let models = await response.json();
@@ -392,7 +392,7 @@ async function grabModelsList() {
 }
 
 async function grabLeaderboard() {
-    let response = await fetch("https://stablehorde.net/api/v2/users?page=1&sort=kudos")
+    let response = await fetch("https://aihorde.net/api/v2/users?page=1&sort=kudos")
     if (!response.ok) return;
 
     let users = await response.json();
@@ -410,7 +410,7 @@ async function grabLeaderboard() {
 }
 
 async function grabPerformance() {
-    let response = await fetch("https://stablehorde.net/api/v2/status/performance")
+    let response = await fetch("https://aihorde.net/api/v2/status/performance")
     if (!response.ok) return;
 
     let performance = await response.json();
@@ -420,7 +420,7 @@ async function grabPerformance() {
 }
 
 async function grabUserInfo() {
-    let response = await fetch("https://stablehorde.net/api/v2/find_user", {
+    let response = await fetch("https://aihorde.net/api/v2/find_user", {
         headers: {
             "apikey": localStorage.getItem("api_key")
         }
