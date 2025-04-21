@@ -255,6 +255,7 @@ function hideAPIKey() {
 function saveAPIKey() {
     localStorage.setItem("api_key", document.getElementById("apiKeyTextBox").value);
     grabUserInfo();
+    grabWorkersList(true);
 }
 
 function toggleModelsStats() {
@@ -320,13 +321,27 @@ async function grabWorkersList(cached = false) {
         workers.sort((a, b) => b.max_length - a.max_length);
     }
 
+    // Move owned nodes to the top
+    if (typeof userinfo !== "undefined" && userinfo.worker_ids && Array.isArray(userinfo.worker_ids)) {
+        workers.sort((a, b) => {
+            const aOwned = userinfo.worker_ids.includes(a.id);
+            const bOwned = userinfo.worker_ids.includes(b.id);
+            if (aOwned && !bOwned) return -1;
+            if (!aOwned && bOwned) return 1;
+            return 0;
+        });
+    }
+
     document.getElementById("container").innerHTML = '';
 
     for (let i = 0; i < workers.length; i++) {
         let worker = workers[i];
 
         let workerElement = document.createElement("div");
-        workerElement.className = "worker-node" + (worker.maintenance_mode == true ? " maintenance" : "");
+        let isUserNode = (typeof userinfo !== "undefined" && userinfo.worker_ids && userinfo.worker_ids.includes(worker.id));
+        workerElement.className = "worker-node"
+            + (worker.maintenance_mode == true ? " maintenance" : "")
+            + (isUserNode ? " highlighted-node" : "");
 
         workerElement.innerHTML = `
 			<div>

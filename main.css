@@ -142,6 +142,10 @@ button:hover, input[type="submit"]:hover {
     margin-left: 8px;
     margin-right: 8px;
 }
+.highlighted-node {
+    border-color: #ffd700 !important; /* Gold */
+    box-shadow: 0 0 8px 2px #ffd70055;
+}
 .link > a {
     text-decoration: none;
 }
